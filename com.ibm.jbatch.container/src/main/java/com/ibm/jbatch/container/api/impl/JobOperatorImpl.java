@@ -273,4 +273,13 @@ public class JobOperatorImpl implements JobOperator {
         }
     }
 
+    public void purge(String apptag) {
+        Transaction tran = suspendTran();
+        try {
+            ((JobOperatorImplDelegate) jobOperator).purge(apptag);
+        } finally {
+            resumeTran(tran);
+        }
+    }
+
 }
